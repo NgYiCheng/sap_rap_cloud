@@ -1,0 +1,26 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_PURCHREQ_HEADER alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _Item { create; with draft; }
+}
+
+define behavior for ZC_PURCHREQ_ITEM alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Header { with draft; }
+}

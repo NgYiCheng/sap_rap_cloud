@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Travel'
+define service ZSD_TRAVEL {
+  expose ZC_PURCHREQ_HEADER as Travel;
+  expose ZC_PURCHREQ_ITEM   as Booking;
+}

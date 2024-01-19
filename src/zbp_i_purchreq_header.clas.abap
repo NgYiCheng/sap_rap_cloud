@@ -1,0 +1,5 @@
+CLASS zbp_i_purchreq_header DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_purchreq_header.
+ENDCLASS.
+
+CLASS zbp_i_purchreq_header IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,65 @@
+unmanaged implementation in class zbp_i_purchreq_header unique;
+strict ( 2 ); // follow standard guidelines
+with draft; // tell the framework i want draft
+
+define behavior for ZI_PurchReq_Header alias Travel
+draft table ZTRAVEL_D_HEADER
+//late numbering // create id after creation
+early numbering // create temporary id before creations
+lock master
+total etag Lastchangedat
+
+authorization master ( instance )
+etag master Lastchangedat
+{
+  create;
+  update (features : instance);
+  delete (features : instance);
+  association _Item { create; with draft;}
+
+  //draft action
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+  draft determine action Prepare;
+  field ( readonly ) Travel_ID;
+
+  //mapped all the cds field with database table
+  mapping for /dmo/travel {
+    Travel_ID = travel_id;
+    Agency_ID = agency_id;
+    Begin_Date = begin_date;
+    Booking_Fee = booking_fee;
+    Currency_Code = currency_code;
+    Customer_ID = customer_id;
+    Description = description;
+    Lastchangedat = lastchangedat;
+  }
+
+}
+
+define behavior for ZI_PurchReq_Item alias Booking
+draft table ZBOOK_D_ITEM
+//late numbering
+early numbering
+lock dependent by _Header
+authorization dependent by _Header
+etag dependent by _Header
+{
+  update;
+  delete;
+  field ( readonly ) Travel_ID;
+  association _Header { with draft; }
+
+  field (readonly) Booking_ID;
+
+  mapping for /dmo/booking {
+    Booking_ID = booking_id;
+    Carrier_ID = carrier_id;
+    Connection_ID = connection_id;
+    Travel_ID = travel_id;
+  }
+
+}

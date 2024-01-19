@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: { 
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title: { 
+        type: #STANDARD,
+        value: 'Travel_ID'
+    }
+//    ,
+//    description: { 
+//        type: #STANDARD,
+//        value: ''
+//    }
+}
+
+annotate view ZC_PURCHREQ_HEADER
+    with 
+{
+    @UI.facet: [
+        { 
+            id: 'General',
+            purpose: #STANDARD,
+            type: #IDENTIFICATION_REFERENCE,
+            label: 'General Information'
+        },
+        { 
+            id: 'Booking',
+            purpose: #STANDARD,
+            position: 20,
+            label: 'Booking Information',
+            type: #LINEITEM_REFERENCE,
+            targetElement: '_Item'
+        }
+    ]
+    
+    @UI.lineItem: [ { position: 10, label: 'Travel ID' } ]
+    @UI.identification: [{ position:10, label: 'Travel ID' }]
+    @UI.selectionField: [{ position: 10 }]
+    Travel_ID;
+    
+    @UI.lineItem: [{ position: 20, label: 'Agency ID' }]
+    @UI.identification: [{ position: 20, label: 'Agency ID' }]
+    Agency_ID;
+    
+    @UI.lineItem: [{ position: 30, label: 'Begin Date' }]
+    @UI.identification: [{ position: 30, label: 'Begin Date' }]
+    Begin_Date;
+    
+    @UI.lineItem: [{ position: 40, label: 'Booking Fee' }]
+    @UI.identification: [{ position: 40, label: 'Booking Fee' }]
+    Booking_Fee;
+    
+    @UI.lineItem: [{ position: 50, label: 'Currency Code' }]
+    @UI.identification: [ { position: 50, label: 'Currency Code' } ]
+    Currency_Code;
+    
+    @UI.lineItem: [{ position: 60, label: 'Customer ID' }]
+    @UI.identification: [ { position: 60, label: 'Customer ID' } ]
+    Customer_ID;
+    
+    @UI.lineItem: [{ position: 70, label: 'Description' }]
+    @UI.identification: [{ position: 70, label: 'Description' }]
+    Description;
+    
+}
